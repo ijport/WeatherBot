@@ -23,5 +23,8 @@ current_timestep = forecast.now()
 
 # Print out the site and current weather
 print(site.name + "-" + current_timestep.weather.text)
-
+print(current_timestep.temperature.value,current_timestep.temperature.units)
+print(current_timestep.wind_direction.value)
+print(current_timestep.wind_speed.value,current_timestep.wind_speed.units)
+print(dir(current_timestep))
 
