@@ -35,9 +35,10 @@ cb = codebug_tether.CodeBug()
 #cbmessage = codebug_tether.sprites.StringSprite(("A"))
 #cb.draw_sprite(0, 0, cbmessage)
 
-cbmessage = codebug_tether.sprites.StringSprite(current_timestep.weather.text)
-for i in range(0,-30,-1):
+msg_txt = current_timestep.weather.text + " " + current_timestep.wind_direction.value + " " + str(current_timestep.wind_speed.value) + " " + current_timestep.wind_speed.units
+cbmessage = codebug_tether.sprites.StringSprite(msg_txt)
+for i in range(0,-70,-1):
 
     cb.draw_sprite(i, 0, cbmessage)
 
-    time.sleep(.1)
+    time.sleep(0.15)
