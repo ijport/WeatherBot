@@ -26,5 +26,18 @@ print(site.name + "-" + current_timestep.weather.text)
 print(current_timestep.temperature.value,current_timestep.temperature.units)
 print(current_timestep.wind_direction.value)
 print(current_timestep.wind_speed.value,current_timestep.wind_speed.units)
-print(dir(current_timestep))
+import codebug_tether
+import codebug_tether.sprites
+import time
 
+cb = codebug_tether.CodeBug()
+
+#cbmessage = codebug_tether.sprites.StringSprite(("A"))
+#cb.draw_sprite(0, 0, cbmessage)
+
+cbmessage = codebug_tether.sprites.StringSprite(current_timestep.weather.text)
+for i in range(0,-30,-1):
+
+    cb.draw_sprite(i, 0, cbmessage)
+
+    time.sleep(.1)
