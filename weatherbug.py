@@ -32,7 +32,6 @@ def show_forecast(conn, cb, site):
     for i in range(0,-70,-1):
 
         cb.draw_sprite(i, 0, cbmessage)
-
         time.sleep(0.15)
 
     weather_value = int(current_timestep.weather.value)
@@ -66,6 +65,18 @@ def show_forecast(conn, cb, site):
             time.sleep(250/1000);
             cb.draw_sprite(0, 0, build_sprite([0b11111,0b11111,0b01111,0b00011,0b00111]));
             time.sleep(250/1000);
+#___________________________________________________________
+
+def show_temperature(conn, cb, site):
+     # Get a forecast for my nearest site with 3 hourly timesteps
+    forecast = conn.get_forecast_for_site(site.id, "3hourly")
+
+    # Get the current timestep from the forecast
+    current_timestep = forecast.now()
+    print(current_timestep.temperature.value,current_timestep.temperature.units)
+
+#___________________________________________________________
+# Main program starts here
 
 # Get a connection to CodeBug
 cb = codebug_tether.CodeBug()
@@ -87,3 +98,7 @@ while True:
     if cb.get_input('A') == 1:
         show_forecast(conn, cb, site)
     cb.clear()
+    time.sleep(0.15)
+    if cb.get_input('B') == 1:
+        show_temperature(conn, cb, site)
+        cb.clear()
