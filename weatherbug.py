@@ -68,13 +68,19 @@ def show_forecast(conn, cb, site):
 #___________________________________________________________
 
 def show_temperature(conn, cb, site):
+
+
      # Get a forecast for my nearest site with 3 hourly timesteps
     forecast = conn.get_forecast_for_site(site.id, "3hourly")
 
     # Get the current timestep from the forecast
     current_timestep = forecast.now()
+    msg_txt = str(current_timestep.temperature.value) +" "+ current_timestep.temperature.units
+    cbmessage = codebug_tether.sprites.StringSprite(msg_txt)
     print(current_timestep.temperature.value,current_timestep.temperature.units)
-
+    for i in range(0,-70,-1):
+      cb.draw_sprite(i, 0, cbmessage)
+      time.sleep(0.25)
 #___________________________________________________________
 # Main program starts here
 
